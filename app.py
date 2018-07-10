@@ -21,6 +21,7 @@ def search():
     drink_names = []
     search = DrinkForm(request.form)
     if search.search.data:
+        # drink_search() expects a list of drink names. Will consider adding multiple submission fields to website in the future
         drink_list = [search.search.data]
         drinks_list = sdb.drink_search(drink_list)[0]
 
@@ -31,6 +32,8 @@ def search():
 
         logging.debug("List of drink names: {}".format(drink_names))
     if request.method == 'POST':
+        if not drinks_list:
+            flash('No results found!')
         return render_template('search.html', form=search, drinks_list=drink_names)
 
 
@@ -40,8 +43,8 @@ def search():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login Requested for user {}, remember_me = {}, password = {}'.format(form.username.data, form.remember_me.data, form.password.data))
-        print('Login Requested for user {}, remember_me = {}, password = {}'.format(form.username.data, form.remember_me.data, form.password.data))
+        flash('Login Requested for user {}, remember_me = {}'.format(form.username.data, form.remember_me.data))
+
         return redirect('/')
     return render_template('login.html', title = "Sign In", form=form)
 

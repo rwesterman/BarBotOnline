@@ -1,0 +1,4 @@
+
+*.idea/FlaskPractice.iml
+*\.idea\*
+*\__pychache__\*
