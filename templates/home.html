@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Welcome to Bottender {% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+<style>
+    h3 {
+        padding: 2px
+        }
+    text {
+        font-size: 24
+        }
+</style>
+<h1 style="padding:-5px">Welcome to Bottender</h1>
+<text style="font-size:20px;">
+    Bottender is an online database of cocktail recipes taken from multiple sources.
+    <br>See the links above to search for drinks by name or by ingredient.
+</text>
+<p>
+    <text>Planned updates include:
+        <li>Adding user accounts to track inventory</li>
+        <li>Providing a list of drinks that a user can make based on their inventory</li>
+        <li>Determining which ingredients will "unlock" the most new recipes from a user's inventory</li>
+        <li>Just generally making the website more attractive...</li>
+    </text>
+</p>
+<br><br>
+<img src="{{ url_for('static', filename='img/last-of-the-oaxacans.jpg') }}"><br>
+
+{% endblock %}
+{% block footer %}{% endblock %}

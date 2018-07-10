@@ -13,9 +13,9 @@ app.config.from_object(Config)
 
 @app.route('/')
 def index():
-    return render_template("base.html")
+    return render_template("home.html")
 
-@app.route('/search', methods = ['GET', 'POST'])
+@app.route('/search/', methods = ['GET', 'POST'])
 def search():
     drinks_list = []
     drink_names = []
@@ -36,10 +36,27 @@ def search():
             flash('No results found!')
         return render_template('search.html', form=search, drinks_list=drink_names)
 
-
+    # Why am I returning this with the drink object here? I guess this is rendering just the search form since there was no "POST" action
     return render_template('search.html', form=search, drinks_list = drinks_list)
 
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/search/ing/', methods = ['GET', 'POST'])
+def ingsearch():
+    drink_names = []
+    search = DrinkForm(request.form)
+    if search.search.data:
+        # Send the ingredient name searched by user to ing_search()
+        # Get back a list of drink names (These are not Drink objects)
+        drink_names = sdb.ing_search(search.search.data)
+        logging.debug("Ingredient {} is used in {}".format(search.search.data, drink_names))
+
+    if request.method == 'POST':
+        if not drink_names:
+            flash('No results found!')
+        return render_template('ingsearch.html', form = search, ing_name = search.search.data, drinks_list = drink_names)
+
+    return render_template('ingsearch.html', form = search, ing_name = None, drinks_list = None)
+
+@app.route('/login/', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():

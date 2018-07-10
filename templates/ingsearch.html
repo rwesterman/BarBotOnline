@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Search by name {% endblock %}
+{% block title %} Search by Ingredient {% endblock %}
 {% block head %}
     {{ super() }}
     <style type="text/css">
@@ -13,19 +13,38 @@
         clear:left;
         alight:left;
     }
+
+    <!--li:nth-child(even){-->
+        <!--background-color: #dddddd;-->
+    <!--}-->
+
+    <!--table {-->
+        <!--font-family: arial, sans-serif;-->
+        <!--border-collapse: collapse;-->
+        <!--width: 100%;-->
+    <!--}-->
+    <!--td, th {-->
+        <!--border: 1px solid #dddddd;-->
+        <!--text-align: left;-->
+        <!--padding: 8px;-->
+    <!--}-->
+
+    <!--tr:nth-child(even) {-->
+        <!--background-color: #dddddd;-->
+    <!--}-->
     </style>
-{
+
     {% from "_formhelpers.html" import render_field %}
 
-    <h1>Search by drink name:</h1><br>
+    <h1>Search by ingredient:</h1><br>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             <!--{{ render_field(form.select) }}-->
             <!--{{ form.select.label }}<br>-->
             <!--{{ form.select() }}-->
-            <!--{{ form.select(size=3) }}<br>-->
-            <!--{{ form.select(width=27)}}<br>-->
+            <!--&lt;!&ndash;{{ form.select(size=3) }}<br>&ndash;&gt;-->
+            <!--&lt;!&ndash;{{ form.select(width=27)}}<br>&ndash;&gt;-->
             <!--{% for error in form.select.errors %}-->
             <!--<span style="color: red;">{{ error }}</span>-->
             <!--{% endfor %}-->
@@ -40,8 +59,12 @@
         </p>
     </form>
     <p>
-
+    <br>
+    {% if ing_name %}
+    <h3>Drinks containing {{ ing_name }}:</h3>
+    {% endif %}
 <!--THIS IS FOR FLASHED ERROR MESSAGES-->
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul class=flashes>
@@ -62,6 +85,6 @@
     {% endfor %}
     {% endif %}
     </p>
-    <img src="{{ url_for('static', filename='img/tobacco-road.jpg') }}"><br>
+    <img src="{{ url_for('static', filename='img/moscow-mule-sm.jpg') }}"><br>
 
 {% endblock %}

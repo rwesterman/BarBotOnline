@@ -4,7 +4,8 @@
     <div class="topnav">
       <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
       <a class="active" href="/">Home</a>
-      <a href="{{ url_for('search') }}">Search by Drink Name or Ingredient</a>
+      <a href="{{ url_for('search') }}">Search by Name</a>
+      <a href="{{ url_for('ingsearch') }}">Search by Ingredient</a>
       <a href = "{{ url_for('login')}}">Login</a>
     </div>
 
