@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %} Search by Ingredient {% endblock %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block content %}
+    <style>
+    li:first-child {
+        padding-top:20px;
+        clear:left;
+        alight:left;
+    }
+
+    p{
+        float:center /* remove this */
+    }
+
+    <!--li:nth-child(even){-->
+        <!--background-color: #dddddd;-->
+    <!--}-->
+
+    <!--table {-->
+        <!--font-family: arial, sans-serif;-->
+        <!--border-collapse: collapse;-->
+        <!--width: 100%;-->
+    <!--}-->
+    <!--td, th {-->
+        <!--border: 1px solid #dddddd;-->
+        <!--text-align: left;-->
+        <!--padding: 8px;-->
+    <!--}-->
+
+    <!--tr:nth-child(even) {-->
+        <!--background-color: #dddddd;-->
+    <!--}-->
+    </style>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                   <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% from "_formhelpers.html" import render_field %}
+
+    <h1>Search by drink name or ingredient used</h1><br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <!--{{ render_field(form.select) }}-->
+            {{ form.select.label }}<br>
+            {{ form.select() }}
+            <!--{{ form.select(size=3) }}<br>-->
+            <!--{{ form.select(width=27)}}<br>-->
+            {% for error in form.select.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        <!--</p>-->
+        <!--<p>-->
+            {{ form.search.label }}<br>
+            {{ form.search(size=32) }}
+            {{ form.submit() }}
+            {% for error in form.search.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+    </form>
+    <p>
+    {% if drinks_list %}
+    <!--<ul>-->
+        {% for drink in drinks_list %}
+        <li>
+            <a href = "{{ url_for('drinks', name = drink) }}">{{ drink }}</a>
+        </li>
+    <!--</ul>-->
+    {% endfor %}
+    {% endif %}
+    </p>
+    <img src="{{ url_for('static', filename='img/tobacco-road.jpg') }}"><br>
+
+{% endblock %}

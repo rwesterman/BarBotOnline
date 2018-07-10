@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div class="topnav">
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
+      <a class="active" href="/">Home</a>
+      <a href="{{ url_for('search') }}">Search by Drink Name or Ingredient</a>
+      <a href = "{{ url_for('login')}}">Login</a>
+    </div>
+
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content">{% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        {% endblock %}
+    </div>
+</body>
+<!--style="background-image: url({{ url_for('static', filename='img/bar.jpg') }})"-->
+
+<footer>
+    <!--<a href = "ryanwesterman.com/donate">Donate?</a>-->
+</footer>
+</html>
