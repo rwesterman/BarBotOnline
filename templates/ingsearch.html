@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "search.html" %}
 {% block title %} Search by Ingredient {% endblock %}
 {% block head %}
     {{ super() }}
@@ -6,85 +6,13 @@
         .important { color: #336699; }
     </style>
 {% endblock %}
-{% block content %}
-    <style>
-    li:first-child {
-        padding-top:20px;
-        clear:left;
-        alight:left;
-    }
-
-    <!--li:nth-child(even){-->
-        <!--background-color: #dddddd;-->
-    <!--}-->
-
-    <!--table {-->
-        <!--font-family: arial, sans-serif;-->
-        <!--border-collapse: collapse;-->
-        <!--width: 100%;-->
-    <!--}-->
-    <!--td, th {-->
-        <!--border: 1px solid #dddddd;-->
-        <!--text-align: left;-->
-        <!--padding: 8px;-->
-    <!--}-->
-
-    <!--tr:nth-child(even) {-->
-        <!--background-color: #dddddd;-->
-    <!--}-->
-    </style>
-
-    {% from "_formhelpers.html" import render_field %}
-
-    <h1>Search by ingredient:</h1><br>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            <!--{{ render_field(form.select) }}-->
-            <!--{{ form.select.label }}<br>-->
-            <!--{{ form.select() }}-->
-            <!--&lt;!&ndash;{{ form.select(size=3) }}<br>&ndash;&gt;-->
-            <!--&lt;!&ndash;{{ form.select(width=27)}}<br>&ndash;&gt;-->
-            <!--{% for error in form.select.errors %}-->
-            <!--<span style="color: red;">{{ error }}</span>-->
-            <!--{% endfor %}-->
-        <!--</p>-->
-        <!--<p>-->
-            {{ form.search.label }}<br>
-            {{ form.search(size=32) }}
-            {{ form.submit() }}
-            {% for error in form.search.errors %}
-            <span style="color: red;">{{ error }}</span>
-            {% endfor %}
-        </p>
-    </form>
-    <p>
-    <br>
-    {% if ing_name %}
-    <h3>Drinks containing {{ ing_name }}:</h3>
-    {% endif %}
-<!--THIS IS FOR FLASHED ERROR MESSAGES-->
-
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class=flashes>
-        {% for message in messages %}
-           <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% if drinks_list %}
-
-<!--THIS IS WHERE DRINKS ARE RETURNED:-->
-    {% for drink in drinks_list %}
-    <li>
-        <a href = "{{ url_for('drinks', name = drink) }}">{{ drink|title }}</a>
-    </li>
-
-    {% endfor %}
-    {% endif %}
-    </p>
+    {% block h1 %}Search by ingredient:{% endblock %}
+    {% block search_head %}
+        <br>
+        {% if ing_name %}
+        <h3>Drinks containing {{ ing_name }}:</h3>
+        {% endif %}
+    {% endblock %}
+{% block img %}
     <img src="{{ url_for('static', filename='img/moscow-mule-sm.jpg') }}"><br>
-
 {% endblock %}

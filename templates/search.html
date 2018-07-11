@@ -14,11 +14,11 @@
         alight:left;
     }
     </style>
-{
+
     {% from "_formhelpers.html" import render_field %}
 
-    <h1>Search by drink name:</h1><br>
-    <form action="" method="post" novalidate>
+    <h1>{% block h1 %}Search by drink name:{% endblock %}</h1><br>
+    <form style = "left-alight:0px" action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             <!--{{ render_field(form.select) }}-->
@@ -40,7 +40,7 @@
         </p>
     </form>
     <p>
-
+    {% block search_head %}{% endblock %}
 <!--THIS IS FOR FLASHED ERROR MESSAGES-->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -62,6 +62,7 @@
     {% endfor %}
     {% endif %}
     </p>
+{% block img %}
     <img src="{{ url_for('static', filename='img/tobacco-road.jpg') }}"><br>
-
+{% endblock %}
 {% endblock %}
