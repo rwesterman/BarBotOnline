@@ -29,7 +29,7 @@
     </text>
 </p>
 <br><br>
-<img src="{{ url_for('static', filename='img/last-of-the-oaxacans.jpg') }}"><br>
-
 {% endblock %}
-{% block footer %}{% endblock %}
+{% block image %}
+    <img class="img-responsive" src="{{ url_for('static', filename='img/last-of-the-oaxacans.jpg') }}"><br>
+{% endblock %}

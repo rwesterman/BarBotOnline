@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% block title %} Search by name {% endblock %}
 {% block head %}
-    {{ super() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
 {% endblock %}
 {% block content %}
     <style>
@@ -62,7 +58,7 @@
     {% endfor %}
     {% endif %}
     </p>
-{% block img %}
-    <img src="{{ url_for('static', filename='img/tobacco-road.jpg') }}"><br>
 {% endblock %}
+{% block img %}
+    <img class="img-responsive" src="{{ url_for('static', filename='img/tobacco-road.jpg') }}"><br>
 {% endblock %}

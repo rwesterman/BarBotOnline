@@ -8,6 +8,7 @@ flask = "*"
 flask-wtf = "*"
 gunicorn = "*"
 sqlalchemy = "*"
+flask-bootstrap = "*"
 
 [dev-packages]
 

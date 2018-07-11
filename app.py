@@ -1,4 +1,5 @@
 from flask import Flask, url_for, request, render_template, flash, redirect
+from flask_bootstrap import Bootstrap
 from forms import DrinkForm, LoginForm
 from config import Config
 import logic.searchDB as sdb
@@ -8,6 +9,7 @@ import logging
 logging.basicConfig(level = logging.DEBUG)
 
 app = Flask(__name__)
+Bootstrap(app)
 # import configuration objects for Flask
 app.config.from_object(Config)
 
