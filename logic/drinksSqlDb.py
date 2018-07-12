@@ -29,13 +29,13 @@ class Drink(Base):
     __tablename__ = 'drinks'
 
     drink_name = Column(String, primary_key=True)
-    page = Column(String)
+    source = Column(String)
 
     ingredients = relationship("Ingredient", secondary = ing_assc_table)
     garnishes = relationship("Garnish", secondary = gar_assc_table)
 
     def __repr__(self):
-        return "<Drink(drink_name = {}, page = {})>".format(self.drink_name, self.page)
+        return "<Drink(drink_name = {}, source = {})>".format(self.drink_name, self.source)
 
 class Ingredient(Base):
     __tablename__ = 'ingredients'
@@ -139,10 +139,10 @@ def add_ingredient(quantity, measurement, ingredient, session =""):
         return "", session
 
 
-def add_drink(name, page):
+def add_drink(name, source):
     """Try to add a new drink to the Drink database, return Drink object and session"""
     try:
-        new_drink = Drink(drink_name = name, page = page)
+        new_drink = Drink(drink_name = name, source = source)
         # create an instance of Session class
         session = Session()
         # Add our User object to our Session

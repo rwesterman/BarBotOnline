@@ -20,7 +20,11 @@
 
     {% from "_formhelpers.html" import render_field %}
 
-    <h1>{{ drink_name|striptags|title }} Recipe:</h1><br>
+    <h1>{{ drink_name|striptags|title }} Recipe:</h1>
+    <em>From {{ source }}</em>
+    <p>
+        <!--<em>From {{ source }}</em>-->
+    </p>
 
     <p>
     {% if ing_list %}

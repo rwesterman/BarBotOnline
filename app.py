@@ -1,5 +1,5 @@
 from flask import Flask, url_for, request, render_template, flash, redirect
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 from forms import DrinkForm, LoginForm
 from config import Config
 import logic.searchDB as sdb
@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level = logging.DEBUG)
 
 app = Flask(__name__)
-Bootstrap(app)
+# Bootstrap(app)
 # import configuration objects for Flask
 app.config.from_object(Config)
 
@@ -91,12 +91,13 @@ def drinks(name):
 
     # only want the drink object, not the full tuple with the session object
     d_obj = drinksdb.query_drink_first(name)[0]
+    source = d_obj.source
     logging.debug("Drink object from query is {}".format(d_obj))
 
     if d_obj:
         recipe = drinksdb.get_formatted_ingredients(d_obj)
         logging.debug("Recipe for {} is {}".format(name, recipe))
-        return render_template("drinks.html", drink_name=name, ing_list=recipe)
+        return render_template("drinks.html", drink_name=name, ing_list=recipe, source = source)
 
     return render_template("drinks.html", drink_name = name, ing_list = ["No recipe found"])
 
